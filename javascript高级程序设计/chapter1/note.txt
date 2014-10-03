@@ -1,0 +1,5 @@
+1，javascript由三部分组成：ECMAScript，DOM，BOM。
+2，ECMAScript：可以为不同宿主环境提供核心编程能力的，不为任何特定环境进行规定。
+3，DOM：DOM Level1：DOM core，Dom HTML
+	DOM Level2：DOM视图，DOM事件，DOM样式，DOM遍历和范围。
+	DOM Level3：DOM Load and Save.
