@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			$(document).ready(function(){
+				var MyComponent=React.createClass({
+					handleClick:function(){
+						console.log("handle clicked");
+						React.findDOMNode(this.refs.myinput).focus();
+					},
+					render:function(){
+						return (
+							<div>
+								<input type="text" ref="myinput" />
+								<input type="button" value="focus the text input" onClick={this.handleClick} />
+							</div>
+						);
+					}
+				});
+				
+				React.render(
+					<MyComponent />,
+					document.body
+				);
+			});
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
