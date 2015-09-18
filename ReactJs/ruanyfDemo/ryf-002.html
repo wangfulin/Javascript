@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			$(document).ready(function(){
+				var friendsName=["wangfulin","wangjiandong","wanglizhi","wangmin"];
+				
+				React.render(
+					<ul>
+					{friendsName.map(function(name){
+						return <li>This is {name}</li>;
+					})}
+					</ul>,
+					$("#friends")[0]
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<h2>The following are my friends:</h2>
+		<div id="friends">
+		</div>
+		<h2>The following are my classmates:</h2>
+		<div id="friends1">
+		</div>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			var arr=[
+				<h1>This is h1</h1>,
+				<h2>This is h2</h2>,
+				<h3>This is h3</h3>
+			];
+			
+			var obj=[
+				<h1>This is h1</h1>,
+				<h2>This is h2</h2>,
+				<h3>This is h3</h3>
+			];
+			React.render(
+				<hgroup>{arr}</hgroup>,
+				$("#container")[0]
+			);
+			
+			React.render(
+				<div>
+					{
+						obj.map(function(ele){
+							return {ele};
+						})
+					}
+				</div>,
+				$("#container1")[0]
+			);
+		</script>
+	</head>
+	<body>
+		<div id="container">
+		
+		</div>
+		<div id="container1">
+		
+		</div>
+	</body>
+</html>

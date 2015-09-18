@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			$(document).ready(function(){
+				var NodeList=React.createClass({
+					render:function(){
+						return (
+						<ol>
+						{this.props.children.map(function(child){
+							return <li>{child}</li>;
+						})}
+						</ol>
+						)
+					}
+				});
+				
+				React.render(
+					<NodeList>
+						<span>List1</span>
+						<span>List2</span>
+					</NodeList>,
+					$(".nl")[0]
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="nl">
+		
+		</div>
+	</body>
+</html>

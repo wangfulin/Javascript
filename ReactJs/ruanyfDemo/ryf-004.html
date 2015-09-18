@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			$(document).ready(function(){
+				var HelloMessage=React.createClass({
+					render:function(){
+						return <h1>Hello {this.props.name},you are quite {this.props.desc}!</h1>;
+					}
+				});
+				
+				React.render(
+					<HelloMessage name="wangfulin" desc="handsome" />,
+					$(".container")[0]
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+		
+		</div>
+	</body>
+</html>
