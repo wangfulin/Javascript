@@ -6,33 +6,36 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* Display current time */
-router.get("/hello",function(req,res,next){
-	res.send("The time is "+new Date().toString());
-});
+router.index=function(req,res){
+	res.render("index",{title:"Express"});
+}
 
-/* multi-method */
-router.all("/user/:username",function(req,res,next){
-	console.log("all methods captured");
-	next();
-});
+router.user=function(req,res){
+	
+}
 
-/* Show personal website */
-router.get("/user/:username",function(req,res,next){
-	res.send("user:"+req.params.username);
-});
+router.post=function(req,res){
+	
+}
 
-/* Use regexp */
-router.get(new RegExp("\/user\/([^\/]+)\/([^\/]+)\/?"),function(req,res,next){
-	res.send("params1:"+req.params[0]+" params2:"+req.params[1]);
-});
+router.reg=function(req,res){
+	
+}
 
-/* List items */
-router.get("/list",function(req,res,next){
-	res.render("list",{
-		title:"List",
-		items:[1992,"wangfulin","express","nodejs"]
-	});
-});
+router.doReg=function(req,res){
+	
+}
+
+router.login=function(req,res){
+	
+}
+
+router.doLogin=function(req,res){
+	
+}
+
+router.logout=function(req,res){
+	
+}
 
 module.exports = router;

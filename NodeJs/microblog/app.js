@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var partials=require("express-partials");
 
 var app = express();
+var MongoStore=require("connect-mongo");
+var settings=require("settings");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +25,23 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.configure(function(){
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'ejs');
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(express.cookieParser());
+	app.use(express.session({
+	secret: settings.cookieSecret,
+	store: new MongoStore({
+	db: settings.db
+	})
+	}));
+	app.use(app.router);
+	app.use(express.static(__dirname + '/public'));
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 //app.use("/hello",routes);
@@ -59,12 +78,14 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.get("/list",function(req,res){
-	res.render("list",{
-		title:"List",
-		items:[1992,"wangfulin","express","nodejs"]
-	});
-});
+app.get("/",routes.index);
+app.get("/u/:user",routes.user);
+app.post("/post",routes.post);
+app.get("/reg",routes.reg);
+app.post("/reg",routes.doReg);
+app.get("/login",routes.login);
+app.post("/login",routes.login);
+app.get("/logout",routes.logout);
 
 //route starts here
 //app.get("/hello",routes.hello);
