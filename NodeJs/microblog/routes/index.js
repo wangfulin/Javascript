@@ -1,17 +1,29 @@
 var express = require('express');
+var crypto = require('crypto');
 var router = express.Router();
 var User = require("../models/user.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: '首页' });
+	//req.session.user=new User({name:"wangfulin",password:"123"});
+	req.session.success="注册成功";
+	res.render('index', { 
+		title: '首页',
+		error:"注册失败",
+		success:"注册成功"
+	});
 });
 
 router.get("/reg",function(req,res){
+	//req.session.user=new User({name:"wangfulin",password:"123"});
+	req.session.error="注册失败";
 	res.render("reg",{
-		title:"用户注册"
-	})
-})
+		title:"用户注册",
+		error:"注册失败",
+		success:"注册成功"
+	});
+});
+
 
 router.post("/reg",function(req,res){
 	//res.render('index', { title: '首页' });

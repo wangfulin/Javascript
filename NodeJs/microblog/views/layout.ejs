@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Microblog</title>
+		<title><%= locals.title %></title>
 		<link rel="stylesheet" href="/stylesheets/bootstrap.css" />
 		<link rel="stylesheet" href="/stylesheets/bootstrap-theme.css" />
 		<style>
@@ -20,7 +20,7 @@
 					<a class="navbar-brand" href="/">Microblog</a>
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/">首页</a></li>
-						<% if(!user){ %>
+						<% if(typeof user === undefined){ %>
 							<li><a href="/login">登入</a></li>
 							<li><a href="/reg">注册</a></li>
 						<% } else { %>
@@ -32,14 +32,14 @@
 		</div>
 		
 		<div id="container" class="container">
-			<% if(success){ %>
+			<% if(locals.success){ %>
 				<div class="alert alert-success">
-					<%= success %>
+					<%= locals.success %>
 				</div>
 			<% } %>
-			<% if(error){ %>
+			<% if(locals.error){ %>
 				<div class="alert alert-error">
-					<%= error %>
+					<%= locals.error %>
 				</div>
 			<% } %>
 			<%- body %>
