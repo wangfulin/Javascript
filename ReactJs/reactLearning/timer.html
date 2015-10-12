@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			$(document).ready(function(){
+				var Timer=React.createClass({
+					getInitialState:function(){
+						return {secondsEclapsed:0};
+					},
+					tick:function(){
+						this.setState({secondsEclapsed:this.state.secondsEclapsed+1});
+					},
+					componentDidMount:function(){
+						this.interval=setInterval(this.tick,1000);
+					},
+					componentWillUnmount:function(){
+						clearInterval(this.interval);
+					},
+					render:function(){
+						return <div>Seconds Eclapsed:{this.state.secondsEclapsed}</div>;
+					}
+				});
+				
+				React.render(<Timer />,document.body);
+			});
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

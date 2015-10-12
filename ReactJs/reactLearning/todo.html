@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			$(document).ready(function(){
+				var TodoList=React.createClass({
+					render:function(){
+						var createItem=function(itemText){
+							return <li>{itemText}</li>;
+						};
+						return <ul>{this.props.items.map(createItem)}</ul>;
+					}
+				});
+				
+				var TodoApp=React.createClass({
+					getInitialState:function(){
+						return {items:[],text:""};
+					},
+					onChange:function(e){
+						this.setState({text:e.target.value});
+					},
+					handleSubmit:function(e){
+						e.preventDefault();
+						var nextItems=this.state.items.concat([this.state.text]);
+						var nextText="";
+						this.setState({items:nextItems,text:nextText});
+					},
+					render:function(){
+						return (
+						<div>
+							<h1>Todo APP</h1>
+							<TodoList items={this.state.items} />
+							<form onSubmit={this.handleSubmit}>
+								<input type="input" value={this.state.text} onChange={this.onChange} />
+								<button>Add #{this.state.items.length+1}</button>
+							</form>
+						</div>
+					);
+					}
+				});
+				
+				React.render(<TodoApp />,document.body);
+				//console.log(React.unmountComponentAtNode(document.body));
+			});
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
