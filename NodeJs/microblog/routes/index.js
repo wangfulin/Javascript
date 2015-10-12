@@ -6,21 +6,17 @@ var User = require("../models/user.js");
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	//req.session.user=new User({name:"wangfulin",password:"123"});
-	req.session.success="注册成功";
+	//req.session.success="注册成功";
 	res.render('index', { 
-		title: '首页',
-		error:"注册失败",
-		success:"注册成功"
+		title: '首页'
 	});
 });
 
 router.get("/reg",function(req,res){
 	//req.session.user=new User({name:"wangfulin",password:"123"});
-	req.session.error="注册失败";
+	//req.session.error="注册失败";
 	res.render("reg",{
-		title:"用户注册",
-		error:"注册失败",
-		success:"注册成功"
+		title:"用户注册"
 	});
 });
 

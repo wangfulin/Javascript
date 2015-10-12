@@ -13,6 +13,18 @@ var partials=require("express-partials");
 var app = express();
 var MongoStore=require("connect-mongo");
 var settings=require("./settings");
+console.log("This is what before");
+//添加动态视图助手
+app.use(function(req,res,next){
+	res.locals.user=req.session.user;
+	
+	var err=req.flash("error");
+	var success=req.flash("success");
+	res.locals.error=err.length?err:null;
+	res.locals.success=success.length?success:null;
+});
+
+console.log("this is what after");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,22 +37,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-//app.configure("development",function(){
-	app.set('views', __dirname + '/views');
-	app.set('view engine', 'ejs');
-	//app.use(express.bodyParser());
-	//app.use(express.methodOverride());
-	//app.use(express.cookieParser());
-	//app.use(express.session({
-	//	secret: settings.cookieSecret,
-	//	store: new MongoStore({
-	//		db: settings.db
-	//	})
-	//}));
-	//app.use(express.router(routes));
-	app.use(express.static(__dirname + '/public'));
-//});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
@@ -86,30 +82,6 @@ app.post("/reg",routes.doReg);
 app.get("/login",routes.login);
 app.post("/login",routes.login);
 app.get("/logout",routes.logout);
-
-//添加动态视图助手
-/* app.dynamicHelpers({
-	user:function(req,res){
-		return req.session.user;
-	},
-	error:function(req,res){
-		var err=req.flash("error");
-		
-		if(err.length){
-			return err;
-		}else{
-			return null;
-		}
-	},
-	success:function(req,res){
-		var succ=req.flash("success");
-		if(succ.length){
-			return succ;
-		}else{
-			return null;
-		}
-	}
-}); */
 
 //route starts here
 //app.get("/hello",routes.hello);
