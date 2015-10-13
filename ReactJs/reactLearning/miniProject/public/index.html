@@ -6,6 +6,7 @@
     <script src="scripts/JSXTransformer.js"></script>
     <script src="scripts/jquery-2.1.4.min.js"></script>
 	<script src="scripts/showdown.min.js"></script>
+	<style rel="stylesheet" type="text/css" href="css/index.css"></style>
   </head>
   <body>
     <div id="content"></div>
@@ -102,8 +103,8 @@
 			render:function(){
 				return (
 					<form className="commentForm" onSubmit={this.handleSubmit}>
-						<input type="text" placeholder="your name" ref="author" />
-						<input type="text" placeholder="say something..." ref="text" />
+						<input className="author" type="text" placeholder="your name" ref="author" />
+						<input className="content" type="text" placeholder="say something..." ref="text" />
 						<input type="submit" value="Post" />
 					</form>
 				);
