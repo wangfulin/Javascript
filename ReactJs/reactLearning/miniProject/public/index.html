@@ -31,7 +31,6 @@
 						console.error(this.props.url,status,err.toString());
 					}.bind(this)
 				});
-				console.log("This is polling!");
 			},
 			getInitialState:function(){
 				return {data:[]};
@@ -43,6 +42,7 @@
 					type:"post",
 					data:comment,
 					success:function(data){
+						console.log("success");
 						this.setState({data:data});
 					}.bind(this),
 					error:function(xhr,status,err){
@@ -100,7 +100,6 @@
 					<form className="commentForm" onSubmit={this.handleSubmit}>
 						<input type="text" placeholder="your name" ref="author" />
 						<input type="text" placeholder="say something..." ref="text" />
-						<input />
 						<input type="submit" value="Post" />
 					</form>
 				);
