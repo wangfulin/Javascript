@@ -36,7 +36,7 @@
 			getInitialState:function(){
 				return {data:[]};
 			},
-			onCommentSubmit:function(comment){
+			handleCommentSubmit:function(comment){
 				$.ajax({
 					url:this.props.url,
 					dataType:"json",
@@ -59,7 +59,7 @@
 					<div className="commentBox">
 						<h1>Comments</h1>
 						<CommentList data={this.state.data} />
-						<CommentForm />
+						<CommentForm onCommentSubmit={this.handleCommentSubmit} />
 					</div>
 				);
 			}
