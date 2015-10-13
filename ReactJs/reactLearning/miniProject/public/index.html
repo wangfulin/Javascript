@@ -36,6 +36,20 @@
 			getInitialState:function(){
 				return {data:[]};
 			},
+			onCommentSubmit:function(comment){
+				$.ajax({
+					url:this.props.url,
+					dataType:"json",
+					type:"post",
+					data:comment,
+					success:function(data){
+						this.setState({data:data});
+					}.bind(this),
+					error:function(xhr,status,err){
+						console.error(this.props.url,status,err.toString());
+					}.bind(this)
+				});
+			},
 			componentDidMount:function(){
 				this.loadCommentsFromServer();
 				setInterval(this.loadCommentsFromServer,this.props.pollInterval);
@@ -68,14 +82,27 @@
 		});
 		
 		var CommentForm=React.createClass({
+			handleSubmit:function(e){
+				e.preventDefault();
+				var author=this.refs.author.getDOMNode().value.trim();
+				var text=this.refs.text.getDOMNode().value.trim();
+				if(!author||!text){
+					return;
+				}
+				//TODO send info to server
+				this.props.onCommentSubmit({author:author,text:text});
+				this.refs.author.getDOMNode().value="";
+				this.refs.text.getDOMNode().value="";
+				return;
+			},
 			render:function(){
 				return (
-					<div className="commentForm">
-						<input type="text" placeholder="your name" />
-						<input type="text" placeholder="say something..." />
+					<form className="commentForm" onSubmit={this.handleSubmit}>
+						<input type="text" placeholder="your name" ref="author" />
+						<input type="text" placeholder="say something..." ref="text" />
 						<input />
 						<input type="submit" value="Post" />
-					</div>
+					</form>
 				);
 			}
 		});
