@@ -2,33 +2,61 @@
 <html>
   <head>
     <title>Hello React</title>
-    <script src="http://fb.me/react-0.13.0.js"></script>
-    <script src="http://fb.me/JSXTransformer-0.13.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="scripts/react.min.js"></script>
+    <script src="scripts/JSXTransformer.js"></script>
+    <script src="scripts/jquery-2.1.4.min.js"></script>
+	<script src="scripts/showdown.min.js"></script>
   </head>
   <body>
     <div id="content"></div>
     <script type="text/jsx">
       // Your code here
-	  document.ready(function(){
+	  //document.ready(function(){
+		var converter=new showdown.Converter();
+		
+		var data=[
+			{author:"Pete Hunt",text:"This is one comment"},
+			{author:"Jordan Walke",text:"This is *another* comment"}
+		];
+	  
 		var CommentBox=React.createClass({
+			getInitialState:function(){
+				return {data:[]};
+			},
+			componentDidMount:function(){
+				$.ajax({
+					url:this.props.url,
+					dataType:"json",
+					success:function(data){
+						this.setState({data:data});
+					}.bind(this),
+					error:function(xhr,status,err){
+						console.error(this.props.url,status,err.toString());
+					}.bind(this)
+				});
+			},
 			render:function(){
 				return (
 					<div className="commentBox">
 						<h1>Comments</h1>
-						<CommentList />
+						<CommentList data={this.state.data} />
 						<CommentForm />
 					</div>
 				);
 			}
 		});
 		
+		
 		var CommentList=React.createClass({
 			render:function(){
+				var commentNodes=this.props.data.map(function(comment){
+					return (
+						<Comment author={comment.author}>{comment.text}</Comment>
+					);
+				});
 				return (
 					<div className="commentList">
-						<Comment author="Pete Hunt">This is one comment</Comment>
-						<Comment author="Jordan Walke">This is *another* comment</Comment>
+						{commentNodes}
 					</div>
 				);
 			}
@@ -46,19 +74,20 @@
 		
 		var Comment=React.createClass({
 			render:function(){
+				var rawMarkup=converter.makeHtml(this.props.children.toString());
 				return (
 					<div className="comment">
 						<h2 className="commentAuthor">
 							{this.props.author}
 						</h2>
-						{this.props.children}
+						<span dangerouslySetInnerHTML={{__html:rawMarkup}} />
 					</div>
 				);
 			}
 		});
 		
-		React.render(<CommentBox />,document.getElementById("content"));
-	  });
+		React.render(<CommentBox url="http://localhost/data.json" />,document.getElementById("content"));
+	  //});
     </script>
   </body>
 </html>
