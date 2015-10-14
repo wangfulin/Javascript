@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		
+		</style>
+		<script src="../build/react.js"></script>
+		<script src="../build/browser.min.js"></script>
+		<script src="../build/jquery.min.js"></script>
+		<script type="text/babel">
+			var Input=React.createClass({
+				getInitialState:function(){
+					return {value:"Hello!"};
+				},
+				handleChange:function(event){
+					this.setState({value:event.target.value});
+				},
+				render:function(){
+					var value=this.state.value;
+					return (
+						<div>
+							<input onChange={this.handleChange} type="text" value={value} />
+							<p>{value}</p>
+						</div>
+					);
+				}
+			});
+			React.render(<Input />,document.body);
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
