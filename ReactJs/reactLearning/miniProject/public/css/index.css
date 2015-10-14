@@ -19,8 +19,8 @@
 .comment{
 	
 }
-.comment *{
-	float:left;
+.comment{
+	
 }
 .commentAuthor{
 	font-size:16px;
@@ -28,6 +28,9 @@
 }
 .commentAuthor:after{
 	content:":";
+}
+.commentContent{
+	
 }
 .commentForm{
 	
@@ -41,7 +44,8 @@
 	-ms-border-radius:5px;
 	-o-border-radius:5px;
 	display:block;
-	margin:10px;
+	margin:30px;
+	outline:none;
 }
 .content{
 	width:600px;
@@ -52,13 +56,18 @@
 	-ms-border-radius:5px;
 	-o-border-radius:5px;
 	display:block;
+	margin-left:30px;
+	outline:none;
 }
 input[type="submit"]{
 	width:80px;
 	height:32px;
+	font-size:18px;
 	border-radius:5px;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
 	-ms-border-radius:5px;
 	-o-border-radius:5px;
+	margin-left:30px;
+	margin-top:20px;
 }

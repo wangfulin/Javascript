@@ -6,7 +6,7 @@
     <script src="scripts/JSXTransformer.js"></script>
     <script src="scripts/jquery-2.1.4.min.js"></script>
 	<script src="scripts/showdown.min.js"></script>
-	<style rel="stylesheet" type="text/css" href="css/index.css"></style>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
   </head>
   <body>
     <div id="content"></div>
@@ -104,7 +104,7 @@
 				return (
 					<form className="commentForm" onSubmit={this.handleSubmit}>
 						<input className="author" type="text" placeholder="your name" ref="author" />
-						<input className="content" type="text" placeholder="say something..." ref="text" />
+						<textarea className="content" ref="text" />
 						<input type="submit" value="Post" />
 					</form>
 				);
@@ -119,7 +119,7 @@
 						<h2 className="commentAuthor">
 							{this.props.author}
 						</h2>
-						<span dangerouslySetInnerHTML={{__html:rawMarkup}} />
+						<span className="commentContent" dangerouslySetInnerHTML={{__html:rawMarkup}} />
 					</div>
 				);
 			}
