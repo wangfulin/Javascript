@@ -1,0 +1,30 @@
+{
+  "name": "react-learning",
+  "version": "1.0.0",
+  "description": "react learning",
+  "main": "index.js",
+  "scripts": {
+	  "start": "npm run serve | npm run dev",
+	  "serve": "./node_modules/.bin/http-server -p 8080",
+	  "dev": "webpack-dev-server --progress --colors --port 8090"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://www.github.com/wangfulin"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "wangfulin",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "http-server": "^0.8.5",
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
